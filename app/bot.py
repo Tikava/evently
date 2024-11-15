@@ -4,7 +4,7 @@ from telegram.ext import (
     CommandHandler,
 )
 
-from config import BOT_TOKEN
+from app.config import BOT_TOKEN
 
 # Handlers
 from handlers.start import start
@@ -59,7 +59,3 @@ def main() -> None:
     app.add_handler(CallbackQueryHandler(related_places_callback, pattern='^related_places$'))
     
     app.run_polling()
-
-
-if __name__ == "__main__":
-    main()
