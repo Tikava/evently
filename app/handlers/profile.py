@@ -1,13 +1,11 @@
-from typing import Optional
-
 from sqlalchemy.future import select
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 
-from utils.translation import get_translation
-from database.db import Session
-from models.base import Event
+from app.utils.translation import get_translation
+from app.database.db import Session
+from app.database.models import Event
 
 
 async def profile(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:

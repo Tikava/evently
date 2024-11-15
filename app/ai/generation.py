@@ -1,14 +1,11 @@
 import json
-
 import jsonpickle
 from vertexai.generative_models import GenerativeModel, ChatSession
-
-from ai.models import BaseModel, InquireModel
-from database.db import Session
-from models.base import Chat
-
-base_model = BaseModel().get_model()
+from app.ai.models import BaseModel, InquireModel
+from app.database.db import Session
+from app.database.models import Chat
 inquirer_model = InquireModel().get_model()
+base_model = BaseModel().get_model()
 
 
 # Sending message to the model and retrieving the response
@@ -42,7 +39,11 @@ def send_message(model: GenerativeModel, user_id: int, user_input: str) -> dict:
 
             # Returning formatted response
             if model == base_model:
-                return response.text
-            return json.loads(response.text.replace("```", "").replace("json", "").strip())
-    except Exception:
-        raise Exception("No chat session found. Please start a new chat session.")
+                return json.loads(response.text.replace("```", "").replace("json", "").strip())
+            response_text = response.text.replace("```", "")
+            response_text = response_text.replace("json", "")
+            response_text = response_text.strip()
+            return json.loads(response_text)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        raise Exception("No chat session found. Please start a new chat session.") from e

@@ -3,12 +3,12 @@ import re
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 
-from database.db import Session
-from models.base import Event
-from ai.generation import send_message
-from ai.models import BaseModel
-from utils.helpers import search_places
-from utils.translation import get_translation
+from app.database.db import Session
+from app.database.models import Event
+from app.ai.generation import send_message
+from app.ai.models import BaseModel
+from app.utils.helpers import search_places
+from app.utils.translation import get_translation
 
 BASE_MODEL = BaseModel().get_model()
 

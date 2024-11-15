@@ -13,6 +13,7 @@ class User(Base):
     
     id: Mapped[int] = mapped_column(primary_key=True)
     username: Mapped[str] = mapped_column(String(30))
+    preferred_language: Mapped[str] = mapped_column(String(2))
     
     events: Mapped[List["Event"]] = relationship(
         back_populates="user", cascade="all, delete-orphan")

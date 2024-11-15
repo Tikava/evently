@@ -1,7 +1,9 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 
-from utils.translation import LANGUAGES, get_translation
+from app.utils.translation import LANGUAGES, get_translation
+from app.database.db import Session
+from app.database.models import User
 
 
 async def select_language(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -17,4 +19,7 @@ async def select_language(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 async def language_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     await query.answer(get_translation(context.user_data, 'language_selected'), show_alert=True)
+    with Session() as session:
+        session.query(User).filter_by(id=update.effective_user.id).update({'preferred_language': query.data})
+        session.commit()
     context.user_data['language'] = query.data

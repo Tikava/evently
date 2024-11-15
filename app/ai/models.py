@@ -2,7 +2,7 @@ import vertexai
 from vertexai.generative_models import GenerativeModel
 
 # from config import GEMINI_API_KEY
-from ai.settings import base_model_description, inquier_model_description
+from app.ai.settings import base_model_description, inquier_model_description
 
 # genai.configure(api_key=GEMINI_API_KEY)
 PROJECT_ID = 'gen-lang-client-0534670514'

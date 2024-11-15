@@ -4,11 +4,11 @@ from telegram import Update, KeyboardButton, InlineKeyboardButton, InlineKeyboar
     ReplyKeyboardRemove
 from telegram.ext import ContextTypes, ConversationHandler, MessageHandler, CommandHandler, filters
 
-from utils.translation import get_translation
-from utils.helpers import subscription_required
+from app.utils.translation import get_translation
+from app.utils.helpers import subscription_required
 
-from ai.generation import send_message
-from ai.models import BaseModel, InquireModel
+from app.ai.generation import send_message
+from app.ai.models import BaseModel, InquireModel
 
 BASE_MODEL = BaseModel().get_model()
 INQUIRER_MODEL = InquireModel().get_model()

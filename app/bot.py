@@ -7,18 +7,18 @@ from telegram.ext import (
 from app.config import BOT_TOKEN
 
 # Handlers
-from handlers.start import start
-from handlers.language import (
+from app.handlers.start import start
+from app.handlers.language import (
     select_language,
     language_callback
 )
-from handlers.conversation.conversation import conv_handler
-from handlers.conversation.callbacks import (
+from app.handlers.conversation.conversation import conv_handler
+from app.handlers.conversation.callbacks import (
     try_again_callback,
     save_callback,
     related_places_callback
 )
-from handlers.profile import (
+from app.handlers.profile import (
     profile,
     my_events_callback,
     previous_event_view,
@@ -26,7 +26,7 @@ from handlers.profile import (
     current_event_view,
     remove_current_event_from_favs
 )
-from handlers.subscription import subscribe
+from app.handlers.subscription import subscribe
 
 
 def main() -> None:
@@ -57,5 +57,7 @@ def main() -> None:
     app.add_handler(CallbackQueryHandler(try_again_callback, pattern='^try_again$'))
     app.add_handler(CallbackQueryHandler(save_callback, pattern='^save$'))
     app.add_handler(CallbackQueryHandler(related_places_callback, pattern='^related_places$'))
-    
+
+    print("Bot is running!")
     app.run_polling()
+    print("Bot is stopped!")

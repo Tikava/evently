@@ -6,8 +6,8 @@ import urllib.parse
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from config import CHANNEL_USERNAME, TWOGIS_API_KEY
-from utils.translation import get_translation
+from app.config import CHANNEL_USERNAME, TWOGIS_API_KEY
+from app.utils.translation import get_translation
 
 async def check_subscription_status(update: Update, context: ContextTypes.DEFAULT_TYPE) -> bool:
     user_id = update.effective_user.id
